@@ -1,4 +1,9 @@
 /-
+pineapple
+whd7zb; https://github.com/oscar-lauth/cs2120f21.git
+np3wj; https://github.com/pniroj/cs2120f21.git
+-/
+/-
 EQUALITY
 -/
 
@@ -11,8 +16,8 @@ axioms of equality, but either of the theorems about properties
 of equality that we have proven. Hint: There's something about
 this question that makes it much easier to answer than it might
 at first appear.
+Given a proof that w = z, we can apply the symmetric theorem of equality. This shows z = w, QED.
 -/
-
 /- #2
 Give a formal statement of the conjecture (proposition) from
 #1 by filling in the "hole" in the following definition. The
@@ -22,7 +27,8 @@ all propositions in Lean).
 -/
 
 def prop_1 : Prop := 
-  _
+
+  ∀(T : Type)(x y z w : T), x = y → y = z → w = z → z = w
 
 /- #3 (extra credit)
 Give a formal proof of the proposition from #2 by filling in
@@ -33,7 +39,9 @@ again, called eq.refl, eq.subst, eq.symm, eq.trans.
 
 theorem prop_1_proof : prop_1 := 
 begin
-  _
+  assume T x y z w e1 e2 e3,
+  apply eq.symm e3,
+
 end
 
 /-
@@ -44,7 +52,8 @@ FOR ALL: ∀.
 Give a very brief explanation in English of the introduction
 rule for ∀. For example, suppose you need to prove (∀ x, P x);
 what do you do? (I'm being a little informal in leaving out the
-type of X.) 
+type of X.)
+For the introduction rule for ∀, you assume an arbitrary object x of Type T and then show P is true for x.
 -/
 
 /- #5
@@ -52,12 +61,11 @@ Suppose you have a proof, let's call it pf, of the proposition,
 (∀ x, P x), and you need a proof of P t, for some particular t.
 Write an expression then uses the elimination rule for ∀ to get
 such a proof. Complete the answer by replacing the underscores
-in the following expression: ( _ _ ). 
+in the following expression: ( pf t ). 
 -/
 
 /-
 IMPLIES: →
-
 In the "code" that follows, we define two predicates, each 
 taking one natural number as an argument. We call them ev and 
 odd. When applied to any value, n, ev yields the proposition 
@@ -76,7 +84,7 @@ Hint: put parenthesis around "n + 1" in your answer.
 -/
 
 def successor_of_even_is_odd : Prop := 
-  _
+  ∀(n : ℕ) ev → (n+1) odd
 
 /- #7
 Suppose that "its_raining" and "the_streets_are_wet" are
@@ -88,7 +96,7 @@ by filling in the hole
 
 axioms (raining streets_wet : Prop)
 
-axiom if_raining_then_streets_wet : _
+axiom if_raining_then_streets_wet : raining → streets_wet
   
 
 /- #9
@@ -101,8 +109,8 @@ you are asked to use the elimination rule for →.
 
 axiom pf_raining : raining
 
-example : streets_wet :=
- _
+example : streets_wet := if_raining_then_streets_wet pf_raining 
+ 
 
 /- 
 AND: ∧
@@ -147,25 +155,29 @@ theorem and_associative :
   ∀ (P Q R : Prop),
   (P ∧ (Q ∧ R)) → ((P ∧ Q) ∧ R) :=
 begin
-  intros P Q R h,
-  have p : P := and.elim_left h,
-end
+    assume P Q R,
+    assume h,
+    have qr: Q ∧ R := and.elim_right h,
+    have q : Q := and.elim_left qr,
+    have r : R := and.elim_right qr,
+    have p : P := and.elim_left h,
+    exact and.intro (and.intro p q) r 
+  end
 
 /- #11
 Give an English language proof of the preceding
 theorem. Do it by finishing off the following
 partial "proof explanation."
-
 Proof. We assume that P, Q, and R are arbitrary 
 but specific propositions, and that we have a
 proof, let's call it p_qr, of (P ∧ (Q ∧ R)) [by
 application of ∧ and → introduction.] What now
 remains to be proved is ((P ∧ Q) ∧ R). We can
 construct a proof of this proposition by applying
-_____ to a proof of (P ∧ Q) and a proof of R.
+the introduction rule for ∧ to a proof of (P ∧ Q) and a proof of R.
 What remains, then, is to obtain these proofs.
 But this is easily done by the application of
-____ to ____. QED. 
+the elimination rule for ∧ to (P ∧ (Q ∧ R)). QED. 
 -/
 
 
