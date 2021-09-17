@@ -1,0 +1,39 @@
+Introduction rule - rule that creates a proof
+intro rule - uses the reflexive rule
+Ex:
+
+axiom eq_refl  : 
+  ∀ (T : Type)  -- if T is any type (of thing)
+    (t : T),    -- and t is thing of that type, T
+  t = t         -- the result type: proof of t = t
+
+For all proposition- assume you're given an arbitrary type and use an arbitrary value to conduct proof
+
+Elimination rule - uses a proof (creates a proof of equality)
+Conjecture- proposition you believe is true but don't have proof
+
+Definition- 
+
+proposition- any claim about the world
+that can be true or false or unknown
+
+predicate- proposition with parameters
+
+axiom- proposition that you just accept
+as true (symmetry and transitivity)
+
+theorem- proposition for which you have
+a proof (reflexivity and subsitutability)
+
+axiom wrong: 1 = 0
+
+example : 1 = 0 := wrong
+
+conjuction- proof that uses and (^ operator)
+
+Collab
+github Id- 
+
+understand/confused?
+
+
