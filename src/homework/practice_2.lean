@@ -10,8 +10,10 @@ and/or theorems that you use.
 
 example : true := true.intro
 
-example : false :=     -- trick question? why?
-
+example : false :=     -- trick question? why? There is no proof for false
+/-
+First we assume that we have a proposition P and a proof of P ∨ P. 
+-/
 example : ∀ (P : Prop), P ∨ P ↔ P := 
 begin
   assume P, 
@@ -32,6 +34,7 @@ end
 
 example : ∀ (P : Prop), P ∧ P ↔ P := 
 begin
+ assume P,
  
 end
 
