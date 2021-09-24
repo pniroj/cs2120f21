@@ -13,7 +13,7 @@ axiom eq_refl  :
 
 
 Elimination rule - uses a proof (creates a proof of equality)
-Elimination rule for and: if you have a proof of P annd Q, you can use
+Elimination rule for and: if you have a proof of P and Q, you can use
 Elimination rule left to break it down and get a proof of P
 Conjecture- proposition you believe is true but don't have proof
 
@@ -105,3 +105,15 @@ exact f,
 end
 
 axiom excluded_middle: ∀(P : Prop), (P ∨ ¬P) :=
+
+example : ∀ (P : Prop), P ∨ P ↔ P :=
+begin
+assume P,
+apply iff.intro,
+--forward
+assume pork,
+cases pork,
+exact pork,
+--backward
+
+end
