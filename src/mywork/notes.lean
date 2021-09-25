@@ -117,3 +117,45 @@ exact pork,
 --backward
 
 end
+
+example : 0 ≠ 1 :=
+begin
+  -- ¬(0 = 1)
+  --(0 = 1) → false
+  assume p,
+  cases p,
+end
+
+example : 0 ≠ 0 → 2 = 3 :=
+begin
+assume p,
+have f : false := p (eq.refl 0),
+exact false.elim(p(eq.refl 0)),
+-- have f : false := p
+-- ¬(0 = 0)
+-- (0 = 0) → false
+end
+
+example : ∀(P : Prop), P → ¬¬P :=
+begin
+  assume P,
+  assume (p : P),
+  -- ¬¬P
+  -- ¬P → false
+  -- (P → false) → false
+  assume h,
+  have f := h p,
+  apply false.elim f,
+end
+
+theorem neg_elim : ∀(P : Prop), ¬¬P → P :=
+begin
+  assume P,
+  assume h,
+  -- case analysis
+  -- excluded middle (em)
+  have pornp := classical.em P,
+  cases pornp with p np,
+  assumption,
+  contradiction,
+end
