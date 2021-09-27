@@ -127,7 +127,15 @@ begin
   apply or.intro_right,
   exact PornotP_right,
   --backward
+  assume PorQ,
+  apply or.intro_left,
+  have PorQ := classical.em P,
+  cases PorQ,
+  exact PorQ_1,
   
+  
+  
+
   
 
 end
