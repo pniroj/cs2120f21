@@ -137,10 +137,11 @@ a formal version of this proof as a reminder, next.
 
 theorem and_commutative : ∀ (P Q : Prop), P ∧ Q → Q ∧ P :=
 begin
-  assume P Q pq,
-  apply and.intro _ _,
-  exact (and.elim_right pq),
-  exact (and.elim_left pq),
+  assume P Q,
+  assume PandQ,
+  apply and.intro,
+  exact and.elim_right PandQ,
+  exact and.elim_left PandQ,
 end
 
 /-

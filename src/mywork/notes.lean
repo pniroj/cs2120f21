@@ -159,3 +159,17 @@ begin
   assumption,
   contradiction,
 end
+
+-- pythagoren triple: takes in 3 arguments
+def pt (a b c: ℕ): Prop :=
+a*a + b*b = c*c
+example: pt 3 4 5 :=
+begin
+unfold  pt,
+apply eq.refl,
+end
+
+∃(N : ℕ): prime m ∧ ev n → Prop :=
+-- YOU NEED A WITNESS AND A PROOF FOR ∃ 
+-- give an arbitrary variable (w)
+-- use w to prove

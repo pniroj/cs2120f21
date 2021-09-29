@@ -131,7 +131,6 @@ begin
   apply or.intro_left,
   have PorQ := classical.em P,
   cases PorQ,
-  exact PorQ_1,
   
   
   
@@ -146,6 +145,11 @@ theorem distrib_and_or :
   ∀ (P Q R: Prop), (P ∨ Q) ∧ (P ∨ R) ↔
                     P ∨ (Q ∧ R) :=
 begin
+  assume P Q R,
+  apply iff.intro,
+  --foward
+  assume PorQ,
+  
 end
 
 -- remember or is right associative
