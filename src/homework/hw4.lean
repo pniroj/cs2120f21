@@ -131,12 +131,9 @@ begin
   apply or.intro_left,
   have PorQ := classical.em P,
   cases PorQ,
-  
-  
-  
-
-  
-
+  exact PorQ_1,
+  have PorQ_1 := classical.em P,
+  contradiction,
 end
 
 
@@ -149,7 +146,12 @@ begin
   apply iff.intro,
   --foward
   assume PorQ,
+  have andElim := and.elim_left PorQ,
+  have andElim2 := and.elim_right PorQ,
+  cases PorQ,
+  apply or.intro_left (Q∧R),
   
+  --backward
 end
 
 -- remember or is right associative
@@ -160,6 +162,9 @@ theorem distrib_and_or_foil :
   (P ∨ Q) ∧ (R ∨ S) ↔
   (P ∧ R) ∨ (P ∧ S) ∨ (Q ∧ R) ∨ (Q ∧ S) :=
 begin
+  assume P Q R S,
+  apply iff.intro _ _,
+  assume p,
 end
 
 
@@ -167,22 +172,54 @@ end
 Formally state and prove the proposition that
 not every natural number is equal to zero.
 -/
-lemma not_all_nats_are_zero : _ :=
+lemma not_all_nats_are_zero : ∃(n : ℕ), n ≠ 0 :=
 begin
+  apply exists.intro _ _,
+  exact 1010,
+  assume p,
+  cases p,
 end 
 
 -- 11. equivalence of P→Q and (¬P∨Q)
 example : ∀ (P Q : Prop), (P → Q) ↔ (¬P ∨ Q) :=
 begin
+  assume P Q,
+  apply iff.intro _ _,
+  assume PimpQ,
+  have PorNP := classical.em P,
+  cases PorNP with p np,
+  have QorNQ := (PimpQ p),
+  exact or.intro_right (¬P) QorNQ,
+  exact or.intro_left Q np,
+  assume NPimpQ,
+  assume p,
+  cases NPimpQ with np q,
+  exact false.elim (np p),
+  exact q,
+  
 end
 
 -- 12
 example : ∀ (P Q : Prop), (P → Q) → (¬ Q → ¬ P) :=
 begin
+  assume P Q,
+  assume p,
+  assume q,
+  assume notP,
+  have f := p notP,
+  exact q f, 
 end
 
 -- 13
 example : ∀ (P Q : Prop), ( ¬P → ¬Q) → (Q → P) :=
 begin
+  assume P Q,
+  assume Imp,
+  assume notImp,
+  --forward
+  have PorQ := classical.em P,
+  cases PorQ,
+  exact PorQ,
+  contradiction,
 end
 
