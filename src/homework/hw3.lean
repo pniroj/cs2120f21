@@ -21,20 +21,6 @@ and apply OR left introduction rule.
 -/
 example : ∀ (P : Prop), P ∨ P ↔ P := 
 begin
-  assume P, 
-  apply iff.intro _ _,
-  -- forward
-    assume porp,
-    apply or.elim porp,
-    -- left disjunct is true
-      assume p,
-      exact p,
-    -- right disjunct is true
-      assume p,
-      exact p,
-  -- backwards
-    assume p,
-    exact or.intro_left P p,
 end
 /- We assume P and apply the iff intro rule to seperate
 forward and backward. For the forward direction, we assume a
