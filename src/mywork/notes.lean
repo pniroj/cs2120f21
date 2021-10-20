@@ -173,3 +173,5 @@ end
 -- YOU NEED A WITNESS AND A PROOF FOR ∃ 
 -- give an arbitrary variable (w)
 -- use w to prove
+
+memorize all the formulas i n lecture 18
