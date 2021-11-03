@@ -1,5 +1,5 @@
 import data.set
-
+--np3wj; https://github.com/pniroj/cs2120f21.git
 /-
 CS2120 F21 HW5
 
@@ -41,18 +41,26 @@ example :
   (∃ (f : α → β), ∀ (a : α), p a → q (f a)) →
   (∃ (a : α), p a) → 
   (∃ (b : β), q b) := 
-
 /-
-What does this propositon say? Explain it in
+ (1) What does this propositon say? Explain it in
 plain English. Here's a start: "If there's a 
 function that maps/takes every α value that ... 
 -- your completed English rendition here:
+If there's a function that maps/takes every α value that
+there exists, a function that if α implies β for all
+α, a predicate a implies q to function f a, then all
+p a implies q b. 
 -/
-
-
--- Give your formal proof here
+ --(2)  Give your formal proof here
 begin
-  _
+assume firstImp,
+assume secImp,
+cases firstImp with f qb,
+admit,
 end
-  
-
+/-
+(3) Write an informal proof of the proposition.
+There exists a function that if α implies β for all
+α, a predicate a implies q to function f a, then all
+p a implies q b.
+-/

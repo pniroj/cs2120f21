@@ -1,4 +1,4 @@
-/-
+ /-
 This lecture extends what you have learned
 by introducing the concept that existential
 quantification is an "information hiding"
