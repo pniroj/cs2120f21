@@ -175,3 +175,9 @@ end
 -- use w to prove
 
 memorize all the formulas i n lecture 18
+
+have foo : k = 1 := sorry,
+
+well order - total order with the condition that for any set of
+defined values (non-empty) there is a element in s, smaller
+than every other element in s

@@ -36,6 +36,14 @@ your answer (in English).
 -/
 example : (∃ (b : β), true) → asymmetric r → ¬reflexive r :=
 begin
+  unfold asymmetric,
+  unfold reflexive,
+  assume xD,
+  cases xD with Z_Z X_X,
+  assume p q,
+  
+  
+
 end
 
 
@@ -59,6 +67,11 @@ add the premise and then show that the updated conjecture is true.
 -/
 example : transitive r → reflexive r → ¬ asymmetric r :=
 begin
+  unfold transitive,
+  unfold reflexive,
+  unfold asymmetric,
+  assume h,
+
 end
 
 
