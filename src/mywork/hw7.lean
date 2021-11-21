@@ -1,5 +1,7 @@
-import data.set
+--np3wj; https://github.com/pniroj/cs2120f21.git
 
+import data.set
+import tactic.ring
 namespace relation
 
 -- PRELIMINARY SETUP
@@ -33,17 +35,21 @@ def powerset (s : set β) := { s' | s' ⊆ s}
 answer the question, is the proposition true if you remove
 the first condition, that β is inhabited? Briefly explain
 your answer (in English).
+
+There exists a powerset where b is a subset of β. An empty set
+cannot be symmetric because there aren't two values. It is not
+reflexive because there are no types to compare.
 -/
 example : (∃ (b : β), true) → asymmetric r → ¬reflexive r :=
 begin
   unfold asymmetric,
   unfold reflexive,
-  assume xD,
-  cases xD with Z_Z X_X,
-  assume p q,
-  
-  
-
+  assume h,
+  cases h with p pf,
+  assume x y,
+  have rpp:= (y p),
+  have notrpp:= (x rpp),
+  contradiction,
 end
 
 
@@ -65,13 +71,22 @@ stuck, then you need to figure out an additional condition that needs
 to be added as a premise to make the proposition true. In that case,
 add the premise and then show that the updated conjecture is true.
 -/
-example : transitive r → reflexive r → ¬ asymmetric r :=
+example : ( ∃( b : β), true) → transitive r → reflexive r → ¬ asymmetric r :=
 begin
   unfold transitive,
   unfold reflexive,
   unfold asymmetric,
   assume h,
+  assume trans,
+  assume refl,
+  assume asymm,
+  cases h with p pf,
+  have rpp:= refl p,
+  have notrpp:= asymm rpp,
+  contradiction,
 
+
+  
 end
 
 
@@ -89,6 +104,8 @@ example : ∀ (s : set β)
             s2 ⊆ s1 → 
             s1 = s2 :=
 begin
+  assume s1 s2 s3,
+  assume s1A
 end
 
 
@@ -112,16 +129,29 @@ into English. (Or if you wanted to be truly Hobbit-like you could say
 -- A: For any n, 1 divides n.
 example : ∀ n, divides 1 n :=
 begin
+  unfold divides,
+  assume p,
+  cases p with n pf,
+  apply exists.intro 0,
+  apply refl,
+  apply exists.intro n.succ,
 end
 
 -- B. For any n, n divides n
 example : ∀ n, divides n n :=
 begin
+  unfold divides,
+  assume p,
+  cases p with n pf,
+  apply exists.intro 0,
+  apply refl,
+  apply exists.intro 1,
 end
 
 -- #C. prove that divides is reflexive 
 example : reflexive divides :=
 begin
+
 end 
 
 -- #D. prove that divides is transitive
@@ -141,7 +171,8 @@ it's not.
 #F. Prove that divides is antisymmetric. 
 -/
 example : anti_symmetric divides := 
-begin  
+begin
+
 end
 
 
@@ -157,16 +188,40 @@ problems.
 -- A
 example : asymmetric r → irreflexive r :=
 begin
+unfold asymmetric,
+unfold irreflexive,
+assume p q rqq,
+apply p rqq,
+assumption,
 end
 
 -- B
 example : irreflexive r → transitive r → asymmetric r :=
 begin
+  unfold irreflexive,
+  unfold transitive,
+  unfold asymmetric,
+  assume p q,
+  assume x y rxy,
+  assume ryx,
+  have notrxx:=(p x),
+  have rxx:=(q rxy ryx),
+  contradiction,
+
 end
 
 -- C
-example : transitive r → ¬ symmetric r → ¬ irreflexive r :=
+example : (∃ (b : β), true) → transitive r → ¬ symmetric r → ¬ irreflexive r :=
 begin
+  unfold transitive,
+  unfold symmetric,
+  unfold irreflexive,
+  assume p,
+  assume q,
+  assume r,
+  assume s,
+  cases p with a pf,
+  admit,
 end
 
 

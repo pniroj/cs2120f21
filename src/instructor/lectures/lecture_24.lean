@@ -1,6 +1,7 @@
-import .lecture_23 
+import .lecture_23a
 
 /-
+<<<<<<< HEAD
 UNIVERSAL QUANTIFICATION OVER AN EMPTY SET IS TRUE
 
 Let's review the most puzzling of the examples from
@@ -16,6 +17,23 @@ predicate is satisfied!
 Let's think about this principle using a different
 example. Question: is every ball in an empty bucket
 of balls red?
+=======
+CLOSURE OPERATIONS ON RELATIONS
+
+Given a relation, r, the reflexive, symmetric, or
+transitive closure of r is "the smallest relation that
+(1) contains r, and (2) contains any additional pairs
+needed to make the resulting relation reflexive, or
+symmetric, or transitive, respectively." By smallest
+we mean a relation that contains r and that has the
+fewest additional pairs needed to obtain the given
+property, with no other unnecessary pairs added in. 
+
+The reflexive, symmetric, transitive closure of 
+r is the smallest relation that contains r and 
+has all three properties. Note that the resulting
+relation will be an equivalence relation. 
+>>>>>>> 6c4fdcac6a27e586a1923d7d6aeb5ea13d23ad05
 -/
 
 axioms (Ball : Type) (red : Ball → Prop)
@@ -46,6 +64,11 @@ arguments, not just 2, it becomes clear that when
 applied to zero arguments, the answer better be true,
 otherwise this operation would *always* return false.  
 -/
+<<<<<<< HEAD
+=======
+def reflexive_closure := 
+  λ (a b : β), (r a b) ∨ (a = b)
+>>>>>>> 6c4fdcac6a27e586a1923d7d6aeb5ea13d23ad05
 
 /-
 So now let's revisit once again our funny example of
@@ -71,7 +94,15 @@ argument/proof. If not, give a counter-example.
 -/
 
 /-
+<<<<<<< HEAD
 CLOSURE OPERATIONS ON RELATIONS
+=======
+A pair (a, b) is in the symmetric closure of r if 
+(a, b) is in r or if (b, a) is i r.
+-/
+def symmetric_closure := 
+  λ (a b : β), (r a b) ∨ (r b a)
+>>>>>>> 6c4fdcac6a27e586a1923d7d6aeb5ea13d23ad05
 
 Given a relation, r, the reflexive, symmetric, or
 transitive closure of r is the smallest relation that
@@ -170,7 +201,10 @@ computer science. That suggests something about teaching
 first-order logic as a first logic for computer science:
 there's real reason to doubt that it's the best choice.
 The higher-order predicate logic of Lean and similar
-modern proof assistants is strictly more expressive.
+modern proof assistants is strictly more expressive,
+and that makes it easier (even possible) to express ideas
+in high-order predicate logic than first-order predicate
+logic.
 -/
 
 

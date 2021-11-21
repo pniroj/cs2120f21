@@ -181,3 +181,6 @@ have foo : k = 1 := sorry,
 well order - total order with the condition that for any set of
 defined values (non-empty) there is a element in s, smaller
 than every other element in s
+
+Composite functions
+(s after r) a = s(r(a))
