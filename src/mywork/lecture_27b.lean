@@ -1,3 +1,4 @@
+--np3wj; https://github.com/pniroj/cs2120f21.git
 import .lecture_26
 import data.set
 
@@ -343,7 +344,8 @@ begin
     Assume hypothesis
   -/
   assume r_bij,
-
+  split,
+end
   /-
   Unfold definitions and, from definitions,
   deduce all the basic facts we'll have to
@@ -422,6 +424,8 @@ def bijectivep := function r ∧ bijective (dom_res r (dom_of_def r))
 -- EXERCISE #2: Prove that the inverse of a bijective function is bijective.
 example : bijective r → bijective (inverse r) :=
 begin
+  assume b,
+  split,
 end
 
 
@@ -431,6 +435,8 @@ function is that function.
 -/
 example : bijective r → (r = inverse (inverse r)) :=
 begin
+  assume b,
+  split,
 end
 
 /-
@@ -438,9 +444,21 @@ EXERCISE  #4: Formally state and prove that every injective function
 has a *function* as an inverse.
 -/
 example : injective r → function (inverse r) :=
-  _ -- hint: remember recent work
-
-
+ -- hint: remember recent work
+ begin
+ assume r_inj,
+ cases r_inj with r_tot r_one,
+ unfold total_function at r_tot,
+ cases r_tot with r_fun alldef,
+ unfold function at r_fun,
+ unfold single_valued at r_fun,
+ unfold defined at alldef,
+ unfold function,
+ unfold single_valued,
+ assume b a1 a2 irba1 irba2,
+ unfold inverse at irba1 irba2,
+ apply r_one irba1 irba2,
+ end
 /-
 EXERCISE #5. Is bijectivity transitive? In other words, if the
 relations, s and r, are both bijective, then is the
